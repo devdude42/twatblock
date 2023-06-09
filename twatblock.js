@@ -503,6 +503,7 @@ twatblock.js text/javascript
             return;
         }
         if (player.paused) {
+            console.log("paused reset");
             return;
         }
         if (isSeek) {
@@ -513,6 +514,7 @@ twatblock.js text/javascript
             return;
         }
         if (isPausePlay) {
+            console.log("reset is pause/play");
             player.pause();
             player.play();
             return;
@@ -533,6 +535,8 @@ twatblock.js text/javascript
             });
         } else {
             console.log("sink | sink video | sink video compressor NULL =>", sink);
+            console.log(player.mediaSinkManager);
+            console.log(player.core);
         }
         playerState.setSrc({ isNewMediaPlayerInstance: true, refreshAccessToken: true });// ffz sets this false
     }
