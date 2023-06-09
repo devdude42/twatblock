@@ -5,6 +5,7 @@ twatblock.js text/javascript
  */
 (function() {
     if ( /(^|\.)twitch\.tv$/.test(document.location.hostname) === false ) { return; }
+    window.setImmediate = e => setTimeout(e(), 4);
     function declareOptions(scope) {
         // Options / globals
         scope.OPT_ROLLING_DEVICE_ID = false;
@@ -77,7 +78,6 @@ twatblock.js text/javascript
             super(URL.createObjectURL(new Blob([newBlobStr])));
             twitchMainWorker = this;
             this.onmessage = function(e) {
-                console.log(`on message key: ${e.data ? e.data.key : "[NO KEY ON MSG]"}`);
                 // NOTE: Removed adDiv caching as '.video-player' can change between streams?
                 if (e.data.key == 'UboShowAdBanner') {
                     var adDiv = getAdDiv();
@@ -128,6 +128,7 @@ twatblock.js text/javascript
     }
     function onFoundAd(streamInfo, textStr, reloadPlayer) {
         console.log('Found ads, switch to backup');
+        console.log(streamInfo);
         streamInfo.UseBackupStream = true;
         streamInfo.IsMidroll = textStr.includes('"MIDROLL"') || textStr.includes('"midroll"');
         if (reloadPlayer) {
