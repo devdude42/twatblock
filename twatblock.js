@@ -1,3 +1,4 @@
+twatblock.js text/javascript
 /**
  * @name twatblock
  * modified pixeltris/twitchadsolutions
