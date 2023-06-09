@@ -518,7 +518,7 @@ twatblock.js text/javascript
             return;
         }
         const sink = player.mediaSinkManager || (player.core ? player.core.mediaSinkManager : null);
-        if (sink && sink.video && sink.video._ffz_compressor) {
+        if (sink && sink.video) { // && sink.video._ffz_compressor) {
             const video = sink.video;
             const volume = video.volume ? video.volume : player.getVolume();
             const muted = player.isMuted();
